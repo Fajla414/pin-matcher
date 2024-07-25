@@ -10,15 +10,19 @@
 <body>
     <div class="container">
         <div class="notify-section" id="notify-section">
-            <p class="notify mb-4" id="notify-wrong">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify mb-4" id="notify-correct">✅ Pin Matched... Secret door is opening for you</p>
-            <p class="notify mb-4" id="notify-invalid">❌ Invalid Empty Input, Please try again...</p>
+            <div class="row">
+                <div class="col-md">
+                    <p class="notify" id="notify-wrong">❌ Pin Didn't Match, Please try again</p>
+                <p class="notify" id="notify-correct">✅ Pin Matched... Secret door is opening for you</p>
+                <p class="notify" id="notify-invalid">❌ Invalid Empty Input, Please try again...</p>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row  mt-4">
+            <div class="col-md-6  mb-1">
                 <div class="pin-generator half-width">
                     <input class="form-control" type="text" id="show-generated-pin">
-                    <button class="generate-btn" onclick="generatorPin()" >Generate Pin</button>
+                    <button class="generate-btn" onclick="generatePin()" >Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -48,7 +52,7 @@
                             </div>
                             <div>
                                 <button type="submit" class="submit-btn" id="submit">Submit</button>
-                                <p class="action-left">3 try left</p>
+                                <p class="action-left"><span id="remaining">3</span> try left</p>
                             </div>
                     </div>
                 </div>

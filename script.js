@@ -6,7 +6,8 @@ let notifyCorrect = document.getElementById('notify-correct');
 let notifyInvalid = document.getElementById('notify-invalid');
 let notify = document.querySelectorAll('.notify');
 let randomNumber;
-const generatorPin = () => {
+
+const generatePin = () => {
     let generatorPinShow = document.getElementById('show-generated-pin');
     randomNumber = Math.floor(1000 + Math.random() * 9000).toString();
     generatorPinShow.value = randomNumber;
@@ -26,29 +27,32 @@ const clearDisplay = () => {
     pinMatcher.value = "";
 }
 
-submitBtn.addEventListener('click', (event) => {
-    if (generatorPinShow.value != "" && pinMatcher.value != "") {
-        if (generatorPinShow.value == pinMatcher.value) {
-            notifyCorrect.style.display = 'block';
-            notifyWrong.style.display = 'none';
-            notifyInvalid.style.display = 'none';
-            clearAlert('correct');
 
+submitBtn.addEventListener('click', (event) => {
+        if (generatorPinShow.value != "" && pinMatcher.value != "") {
+            if (generatorPinShow.value == pinMatcher.value) {
+                notifyCorrect.style.display = 'block';
+                notifyWrong.style.display = 'none';
+                notifyInvalid.style.display = 'none';
+                clearAlert('correct');
+                clearInputField();
+
+            }
+            if (generatorPinShow.value != pinMatcher.value) {
+                notifyWrong.style.display = 'block';
+                notifyCorrect.style.display = 'none';
+                notifyInvalid.style.display = 'none';
+                clearAlert('wrong');
+            }
         }
-        if (generatorPinShow.value != pinMatcher.value) {
-            notifyWrong.style.display = 'block';
+        else {
+            notifyInvalid.style.display = 'block';
             notifyCorrect.style.display = 'none';
-            notifyInvalid.style.display = 'none';
-            clearAlert('wrong');
+            notifyWrong.style.display = 'none';
+            clearAlert('invalid');
         }
-    }
-    else {
-        notifyInvalid.style.display = 'block';
-        notifyCorrect.style.display = 'none';
-        notifyWrong.style.display = 'none';
-        clearAlert('invalid');
-    }
 })
+
 
 const clearAlert = (removeElement) => {
     setTimeout(() => {
@@ -66,4 +70,9 @@ const clearAlert = (removeElement) => {
                 break;
         }
     }, 3000)
+}
+
+const clearInputField = ()=>{
+    pinMatcher.value = "";
+    generatorPinShow.value = "";
 }
